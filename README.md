@@ -5,7 +5,7 @@ Learn Depth Academy LLP · Track 2 Advanced ML Research Internship · Project 01
 A small, readable monitoring system for a deployed ML model. It watches incoming data window by window and
 answers one question: **did the data change in a way that will hurt the model, or is it a harmless wiggle?**
 
-**Live demo:** _add your Vercel link here_ · **Video:** _add link_ · **Report:** [REPORT.md](REPORT.md)
+**Live demo:** https://ml-drift-monitor-web.vercel.app/· **Report:** [REPORT.md](REPORT.md)
 
 ## What is in this repo
 
