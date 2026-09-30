@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drift Monitor · ML-T2-060</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f4;
+    --surface: #ffffff;
+    --ink: #16222e;
+    --muted: #5b6875;
+    --line: #d5dbe1;
+    --navy: #1f3a5f;
+    --teal: #0f766e;
+    --amber: #b7791f;
+    --amber-soft: #f8e7c8;
+    --red: #b3372b;
+    --red-soft: #f4d3cf;
+    --idle: #e3e8ed;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 12px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0 0 8px; font-weight: 600; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 44px 0 6px; font-weight: 600; }
+  p { margin: 0 0 12px; max-width: 68ch; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 60ch; }
+  .muted { color: var(--muted); }
+  .small { font-size: 14px; }
+
+  /* player */
+  .player { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin: 24px 0 16px; }
+  button {
+    font: inherit; font-weight: 500; color: #fff; background: var(--navy); border: 0;
+    padding: 9px 18px; border-radius: 6px; cursor: pointer; min-width: 84px;
+  }
+  button.secondary { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+  button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid #7aa7e0; outline-offset: 2px; }
+  input[type=range] { flex: 1 1 220px; min-width: 160px; accent-color: var(--navy); }
+  .clock { min-width: 150px; text-align: right; font-weight: 500; }
+  label.speed { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 14px; }
+  select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+
+  /* alert matrix: the centrepiece */
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+  .scroll { overflow-x: auto; }
+  .matrix { min-width: 720px; }
+  .mrow { display: grid; grid-template-columns: 220px 1fr; align-items: center; margin-bottom: 5px; }
+  .mlabel { font-size: 14px; padding-right: 12px; }
+  .mlabel.sys { font-weight: 600; }
+  .mcells { display: grid; gap: 2px; }
+  .cell { height: 24px; border-radius: 2px; background: var(--idle); }
+  .cell.future { opacity: .35; }
+  .cell.flag { background: var(--red-soft); }
+  .cell.alert { background: var(--red); }
+  .cell.now { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .cell.s-clean { background: var(--idle); }
+  .cell.s-harmless { background: var(--amber-soft); }
+  .cell.s-impactful { background: var(--red-soft); }
+  .segments { display: grid; margin: 4px 0 14px; font-size: 13px; color: var(--muted); }
+  .segments span { border-top: 2px solid var(--line); padding-top: 3px; text-align: left; white-space: nowrap; overflow: hidden; }
+  .axis { display: grid; grid-template-columns: 220px 1fr; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .axis .ticks { display: flex; justify-content: space-between; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13px; color: var(--muted); margin-top: 14px; }
+  .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 2px; vertical-align: -2px; margin-right: 6px; }
+
+  /* status */
+  .status { margin-top: 16px; border-left: 6px solid var(--idle); padding: 12px 16px; background: var(--surface); border-radius: 0 8px 8px 0; border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .status.ok { border-left-color: var(--teal); }
+  .status.info { border-left-color: var(--amber); }
+  .status.pending { border-left-color: #d98b7f; }
+  .status.alert { border-left-color: var(--red); }
+  .status h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+  .status p { margin: 0 0 6px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: 14px; color: var(--muted); margin-top: 8px; }
+  .facts b { color: var(--ink); font-weight: 500; }
+
+  /* charts */
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px; }
+  .chart h3 { font-size: 15px; margin: 0 0 2px; font-weight: 600; }
+  .chart p { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  svg { width: 100%; height: auto; display: block; }
+  svg text { font-family: inherit; font-size: 11px; fill: var(--muted); }
+
+  /* tables */
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; background: var(--surface); }
+  th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-weight: 600; vertical-align: bottom; }
+  tr.best td { background: #e6f2f0; font-weight: 500; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; margin-top: 12px; }
+  .tablewrap table { min-width: 640px; }
+  details { margin-top: 12px; }
+  summary { cursor: pointer; font-weight: 500; padding: 6px 0; }
+
+  ol.how { padding-left: 20px; max-width: 68ch; }
+  ol.how li { margin-bottom: 6px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 14px; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Is the model's data changing in a way that matters?</h1>
+  <p class="lede">A simulated production stream flows through a monitor. Some shifts are harmless, some quietly hurt the model. The monitor should only raise an alert for the second kind, before delayed labels can confirm the damage.</p>
+
+  <div class="player">
+    <button id="play">Play</button>
+    <button id="reset" class="secondary">Reset</button>
+    <input id="slider" type="range" min="0" value="0" aria-label="Number of windows shown">
+    <span class="clock" id="clock" aria-live="off"></span>
+    <label class="speed">Speed
+      <select id="speed"><option value="900">Slow</option><option value="500" selected>Normal</option><option value="220">Fast</option></select>
+    </label>
+  </div>
+
+  <section class="panel" aria-label="Alert timeline">
+    <div class="scroll">
+      <div class="matrix" id="matrix"></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--red)"></i>Alert (flagged in 2 windows in a row)</span>
+      <span><i style="background:var(--red-soft)"></i>Flagged this window, not yet an alert</span>
+      <span><i style="background:var(--idle)"></i>Nothing flagged</span>
+      <span><i style="background:var(--amber-soft)"></i>Harmless shift injected</span>
+    </div>
+  </section>
+
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+
+  <div class="charts">
+    <div class="chart panel">
+      <h3>Model accuracy</h3>
+      <p>Labels arrive 3 windows late, so the solid line trails the dashed one.</p>
+      <div id="chartAcc"></div>
+    </div>
+    <div class="chart panel">
+      <h3>Can a classifier tell new data from old?</h3>
+      <p>Score of 0.5 means no. The dotted line is the alarm level.</p>
+      <div id="chartAuc"></div>
+    </div>
+    <div class="chart panel">
+      <h3>Have the model's predictions moved?</h3>
+      <p>Distance between old and new predicted probabilities. Dotted line: smallest move that counts.</p>
+      <div id="chartKs"></div>
+    </div>
+  </div>
+
+  <h2>How well each method does</h2>
+  <p id="resultsIntro" class="muted"></p>
+  <div class="tablewrap"><div id="tableMain"></div></div>
+  <p class="small muted" style="margin-top:10px" id="accNote"></p>
+
+  <details>
+    <summary>What if the drift hits different features?</summary>
+    <p class="muted small">Same test, but the injected drift is on features f2 and f3. A single-feature check on the top feature can miss this.</p>
+    <div class="tablewrap"><div id="tableOther"></div></div>
+  </details>
+
+  <details>
+    <summary>How much does window size matter?</summary>
+    <p class="muted small">Fraction of impactful windows detected, and fraction of harmless-shift windows that still raised an alert.</p>
+    <div class="tablewrap"><div id="tableSize"></div></div>
+  </details>
+
+  <h2>How it works</h2>
+  <ol class="how">
+    <li>A random forest is trained on a synthetic tabular dataset (10 features, 5 informative). Its accuracy on held-out data is the reference.</li>
+    <li>The stream is cut into windows of 1,000 requests. Each window is compared with the reference data.</li>
+    <li>Three checks run on every window: a KS test per feature, a classifier that tries to separate old from new rows, and a KS test on the model's predicted probabilities.</li>
+    <li>The combined system alerts only when the input changed <em>and</em> either an important feature moved or the predictions moved, and only if that holds in two windows in a row.</li>
+    <li>True labels are hidden for 3 windows, to copy the delay of real production systems.</li>
+  </ol>
+
+  <footer>Learn Depth Academy LLP · Track 2 Advanced ML Research Internship · Project 01 · Problem ML-T2-060</footer>
+</main>
+
+<script src="results.js"></script>
+<script>
+(function () {
+  const D = window.DRIFT;
+  if (!D) { document.getElementById('status').textContent = 'results.js is missing. Run python run_all.py first.'; return; }
+  const recs = D.demo.records, N = recs.length, delay = D.config.label_delay;
+  const refAcc = D.demo.ref_acc, top3 = D.demo.top3;
+  const methods = D.methods;
+  const $ = id => document.getElementById(id);
+  const pct = v => (v === null || v === undefined || Number.isNaN(v)) ? '–' : Math.round(v * 100) + '%';
+  const num = (v, d) => (v === null || v === undefined || Number.isNaN(v)) ? '–' : v.toFixed(d);
+  const fname = j => 'f' + j + (top3.includes(j) ? ' (important)' : '');
+  let cur = 0, timer = null;
+
+  /* ---------- alert matrix (built once, restyled on every render) ---------- */
+  const cols = 'grid-template-columns:repeat(' + N + ',1fr)';
+  let html = '<div class="mrow"><div class="mlabel muted">Injected scenario</div><div class="mcells" style="' + cols + '">';
+  recs.forEach(r => { html += '<div class="cell s-' + r.scenario + '" title="Window ' + r.t + ': ' + r.scenario + '"></div>'; });
+  html += '</div></div>';
+
+  // labels under the scenario strip
+  const segs = [];
+  recs.forEach(r => {
+    const last = segs[segs.length - 1];
+    if (last && last.s === r.scenario) last.n++; else segs.push({ s: r.scenario, n: 1 });
+  });
+  const segNames = { clean: 'Clean', harmless: 'Harmless shift', impactful: 'Impactful drift' };
+  html += '<div class="mrow"><div></div><div class="segments" style="grid-template-columns:' +
+    segs.map(g => g.n + 'fr').join(' ') + '">' +
+    segs.map(g => '<span>' + (g.n >= 4 ? segNames[g.s] : '') + '</span>').join('') + '</div></div>';
+
+  methods.forEach(m => {
+    html += '<div class="mrow"><div class="mlabel' + (m.key === 'system' ? ' sys' : '') + '">' + m.label +
+      '</div><div class="mcells" style="' + cols + '" data-m="' + m.key + '">' +
+      recs.map(() => '<div class="cell"></div>').join('') + '</div></div>';
+  });
+  const ticks = [0, 10, 20, 30, N - 1];
+  html += '<div class="axis"><div>Window</div><div class="ticks">' + ticks.map(t => '<span>' + t + '</span>').join('') + '</div></div>';
+  $('matrix').innerHTML = html;
+  $('matrix').setAttribute('role', 'img');
+  $('matrix').setAttribute('aria-label', 'Timeline showing which detectors raised alerts in each window');
+
+  /* ---------- svg line charts ---------- */
+  const W = 460, H = 210, ml = 40, mr = 10, mt = 10, mb = 26;
+  const X = t => ml + (t + 0.5) / N * (W - ml - mr);
+  function chart(id, o) {
+    const Y = v => mt + (1 - (v - o.min) / (o.max - o.min)) * (H - mt - mb);
+    let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + o.label + '">';
+    recs.forEach(r => {
+      if (r.scenario !== 'clean') {
+        s += '<rect x="' + (X(r.t) - (W - ml - mr) / N / 2) + '" y="' + mt + '" width="' + (W - ml - mr) / N +
+          '" height="' + (H - mt - mb) + '" fill="' + (r.scenario === 'harmless' ? '#f8e7c8' : '#f4d3cf') + '" opacity=".7"/>';
+      }
+    });
+    o.ticks.forEach(v => {
+      s += '<line x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#e3e8ed"/>' +
+        '<text x="' + (ml - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + o.fmt(v) + '</text>';
+    });
+    [0, 10, 20, 30, N - 1].forEach(t => { s += '<text x="' + X(t) + '" y="' + (H - 8) + '" text-anchor="middle">' + t + '</text>'; });
+    (o.hlines || []).forEach(h => {
+      s += '<line x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(h.y) + '" y2="' + Y(h.y) + '" stroke="' + h.color +
+        '" stroke-width="1.5" stroke-dasharray="' + (h.dash || '2 3') + '"/>';
+    });
+    o.lines.forEach(l => {
+      const pts = l.vals.slice(0, Math.max(0, l.upto)).map((v, i) => X(i).toFixed(1) + ',' + Y(v).toFixed(1));
+      if (pts.length > 1) s += '<polyline fill="none" stroke="' + l.color + '" stroke-width="' + (l.w || 2) +
+        '" stroke-dasharray="' + (l.dash || '') + '" points="' + pts.join(' ') + '"/>';
+      if (pts.length) { const p = pts[pts.length - 1].split(','); s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3.5" fill="' + l.color + '"/>'; }
+    });
+    $(id).innerHTML = s + '</svg>';
+  }
+
+  /* ---------- status text ---------- */
+  function status() {
+    const el = $('status');
+    if (cur === 0) {
+      el.className = 'status'; 
+      el.innerHTML = '<h3>Ready</h3><p>Press Play to stream windows through the monitor, or drag the slider.</p>';
+      return;
+    }
+    const r = recs[cur - 1];
+    const feats = r.drifted_features.length ? r.drifted_features.map(fname).join(', ') : 'none';
+    let cls, title, body;
+    if (r.alerts.system) {
+      cls = 'alert'; title = 'Alert: drift that is likely to affect the model';
+      body = 'The inputs changed and this touches what the model depends on or has moved its predictions.';
+    } else if (r.flags.system) {
+      cls = 'pending'; title = 'Possible drift, waiting one more window';
+      body = 'This window looks relevant. An alert fires if the next window agrees.';
+    } else if (r.level === 'info') {
+      cls = 'info'; title = 'Input changed, model looks unaffected';
+      body = 'Feature tests see a shift, but no important feature and no prediction moved. Logged, no alert.';
+    } else {
+      cls = 'ok'; title = 'No drift detected'; body = 'This window looks like the reference data.';
+    }
+    const seen = cur - 1 - delay;
+    el.className = 'status ' + cls;
+    el.innerHTML = '<h3>Window ' + r.t + ': ' + title + '</h3><p>' + body + '</p><div class="facts">' +
+      '<span>Shifted features: <b>' + feats + '</b></span>' +
+      '<span>True accuracy: <b>' + pct(r.accuracy) + '</b> (labels arrive at window ' + (r.t + delay) + ')</span>' +
+      '<span>Accuracy the team can see: <b>' + (seen >= 0 ? pct(recs[seen].accuracy) + ' (window ' + seen + ')' : 'no labels yet') + '</b></span></div>';
+  }
+
+  /* ---------- render ---------- */
+  function render() {
+    $('slider').value = cur;
+    $('clock').textContent = cur === 0 ? 'Window 0 of ' + N : 'Window ' + (cur - 1) + ' of ' + (N - 1);
+    $('play').textContent = timer ? 'Pause' : (cur >= N ? 'Replay' : 'Play');
+    document.querySelectorAll('.mcells[data-m]').forEach(row => {
+      const key = row.dataset.m;
+      [...row.children].forEach((c, t) => {
+        let k = 'cell';
+        if (t >= cur) k += ' future';
+        else if (recs[t].alerts[key]) k += ' alert';
+        else if (recs[t].flags[key]) k += ' flag';
+        if (t === cur - 1) k += ' now';
+        c.className = k;
+      });
+    });
+    chart('chartAcc', { label: 'Model accuracy by window', min: 0.65, max: 1, ticks: [0.7, 0.8, 0.9, 1], fmt: v => Math.round(v * 100) + '%',
+      hlines: [{ y: refAcc, color: '#5b6875', dash: '5 3' }, { y: refAcc - D.config.acc_drop_confirm, color: '#b3372b' }],
+      lines: [{ vals: recs.map(r => r.accuracy), upto: cur, color: '#9db0c7', dash: '4 3', w: 1.5 },
+              { vals: recs.map(r => r.accuracy), upto: cur - delay, color: '#1f3a5f' }] });
+    chart('chartAuc', { label: 'Classifier detector score by window', min: 0.4, max: 1, ticks: [0.5, 0.6, 0.7, 0.8, 0.9, 1], fmt: v => v.toFixed(1),
+      hlines: [{ y: D.demo.auc_threshold, color: '#0f766e' }],
+      lines: [{ vals: recs.map(r => r.auc), upto: cur, color: '#0f766e' }] });
+    chart('chartKs', { label: 'Prediction shift by window', min: 0, max: 0.35, ticks: [0, 0.1, 0.2, 0.3], fmt: v => v.toFixed(1),
+      hlines: [{ y: 0.10, color: '#b7791f' }],
+      lines: [{ vals: recs.map(r => r.pred_ks), upto: cur, color: '#b7791f' }] });
+    status();
+  }
+
+  /* ---------- player ---------- */
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function tick() { if (cur < N) { cur++; render(); } if (cur >= N) { stop(); render(); } }
+  function start() { if (cur >= N) cur = 0; stop(); timer = setInterval(tick, +$('speed').value); render(); }
+  $('slider').max = N;
+  $('play').onclick = () => timer ? (stop(), render()) : start();
+  $('reset').onclick = () => { stop(); cur = 0; render(); };
+  $('slider').oninput = e => { stop(); cur = +e.target.value; render(); };
+  $('speed').onchange = () => { if (timer) start(); };
+
+  /* ---------- tables ---------- */
+  function mainTable(rows, id, showLead) {
+    let t = '<table><thead><tr><th>Method</th><th>Detects impactful drift</th><th>Alerts on harmless shift</th><th>Alerts on clean data</th><th>Alerts that were right</th>' +
+      (showLead ? '<th>Windows until alert</th><th>Windows ahead of labels</th>' : '') + '</tr></thead><tbody>';
+    rows.forEach(r => {
+      t += '<tr' + (r.key === 'system' ? ' class="best"' : '') + '><td>' + r.method + '</td><td>' + pct(r.recall_impactful) + '</td><td>' +
+        pct(r.false_alarm_harmless) + '</td><td>' + pct(r.false_alarm_clean) + '</td><td>' + pct(r.precision) + '</td>' +
+        (showLead ? '<td>' + num(r.delay_windows, 1) + '</td><td>' + num(r.lead_over_labels, 1) + '</td>' : '') + '</tr>';
+    });
+    $(id).innerHTML = t + '</tbody></table>';
+  }
+  $('resultsIntro').textContent = 'Averages over ' + D.n_seeds + ' random seeds that were not used while designing the system. "Windows ahead of labels" counts how many windows earlier the alert fires than delayed labels would confirm a 5-point accuracy drop.';
+  mainTable(D.summary, 'tableMain', true);
+  mainTable(D.other_features, 'tableOther', false);
+  const a = D.accuracy_by_scenario;
+  $('accNote').textContent = 'Average model accuracy: ' + pct(a.clean) + ' on clean windows, ' + pct(a.harmless) + ' on harmless-shift windows, ' + pct(a.impactful) + ' on impactful-drift windows.';
+
+  const sizes = [...new Set(D.window_size.map(r => r.window_size))];
+  let st = '<table><thead><tr><th>Window size</th>' + methods.map(m => '<th>' + m.label + '</th>').join('') + '</tr></thead><tbody>';
+  sizes.forEach(sz => {
+    st += '<tr><td>' + sz + ' rows</td>' + methods.map(m => {
+      const r = D.window_size.find(x => x.window_size === sz && x.key === m.key);
+      return '<td>' + pct(r.recall_impactful) + ' / ' + pct(r.false_alarm_harmless) + '</td>';
+    }).join('') + '</tr>';
+  });
+  $('tableSize').innerHTML = st + '</tbody></table><p class="small muted" style="padding:0 10px">Each cell: detected impactful windows / alerts on harmless-shift windows.</p>';
+
+  render();
+})();
+</script>
+</body>
+</html>

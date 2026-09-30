@@ -1,0 +1,6 @@
+method,key,recall_impactful,recall_std,false_alarm_clean,false_alarm_harmless,false_alarm_harmless_std,precision,delay_windows,lead_over_labels,detected_in_seeds
+Baseline: KS on top feature,baseline,0.26875,0.4108394607386199,0.0,0.0,0.0,1.0,1.6666666666666667,8.0,3/10
+A: per-feature KS tests,A_feature_tests,0.9,0.049999999999999996,0.0,0.8875,0.0375,0.6694334650856391,1.6,9.0,10/10
+B: classifier detector,B_classifier,0.8375,0.030618621784789725,0.0,0.875,0.0,0.6566666666666667,2.6,8.0,10/10
+D: prediction monitor,D_prediction,0.59375,0.12577882373436317,0.0,0.0,0.0,1.0,6.5,4.1,10/10
+Combined system,system,0.875,0.05590169943749474,0.0,0.0,0.0,1.0,2.0,8.6,10/10

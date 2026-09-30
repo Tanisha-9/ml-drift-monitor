@@ -1,0 +1,21 @@
+window_size,method,key,recall_impactful,recall_std,false_alarm_clean,false_alarm_harmless,false_alarm_harmless_std,precision,delay_windows,lead_over_labels,detected_in_seeds
+250,Baseline: KS on top feature,baseline,0.325,0.3980420832022665,0.0,0.0,0.0,1.0,3.0,-9.0,2/5
+250,A: per-feature KS tests,A_feature_tests,0.8375,0.03061862178478973,0.0125,0.875,0.0,0.6504761904761904,2.6,-8.8,5/5
+250,B: classifier detector,B_classifier,0.7,0.07288689868556626,0.0,0.875,0.0,0.6138321293429653,4.8,-11.0,5/5
+250,D: prediction monitor,D_prediction,0.4375,0.181142209327368,0.0,0.0,0.0,1.0,8.0,-14.2,5/5
+250,Combined system,system,0.825,0.046770717334674264,0.0,0.0,0.0,1.0,2.8,-9.0,5/5
+500,Baseline: KS on top feature,baseline,0.3625,0.44440972086577946,0.0,0.0,0.0,1.0,1.5,7.0,2/5
+500,A: per-feature KS tests,A_feature_tests,0.8875,0.024999999999999998,0.0,0.875,0.0,0.6696969696969697,1.8,8.6,5/5
+500,B: classifier detector,B_classifier,0.75,0.03952847075210474,0.0,0.875,0.0,0.6311695906432748,4.0,6.4,5/5
+500,D: prediction monitor,D_prediction,0.575,0.07288689868556626,0.0,0.0,0.0,1.0,6.8,3.6,5/5
+500,Combined system,system,0.8,0.12119199643540822,0.0,0.0,0.0,1.0,3.2,7.2,5/5
+1000,Baseline: KS on top feature,baseline,0.3625,0.4444097208657794,0.0,0.0,0.0,1.0,1.5,5.5,2/5
+1000,A: per-feature KS tests,A_feature_tests,0.9125,0.03061862178478973,0.0125,0.875,0.0,0.6696969696969697,1.4,8.4,5/5
+1000,B: classifier detector,B_classifier,0.8375,0.03061862178478973,0.0,0.875,0.0,0.6566666666666666,2.6,7.2,5/5
+1000,D: prediction monitor,D_prediction,0.6,0.1224744871391589,0.0,0.05,0.10000000000000002,0.9636363636363636,6.4,3.4,5/5
+1000,Combined system,system,0.8625,0.046770717334674264,0.0,0.05,0.10000000000000002,0.9764705882352942,2.2,7.6,5/5
+2000,Baseline: KS on top feature,baseline,0.1875,0.375,0.0,0.0,0.0,1.0,1.0,9.0,1/5
+2000,A: per-feature KS tests,A_feature_tests,0.9125,0.030618621784789725,0.0125,0.875,0.0,0.669828722002635,1.4,8.2,5/5
+2000,B: classifier detector,B_classifier,0.8375,0.03061862178478973,0.0,0.875,0.0,0.6566666666666666,2.6,7.0,5/5
+2000,D: prediction monitor,D_prediction,0.55,0.10752906583803283,0.0,0.0,0.0,1.0,7.2,2.4,5/5
+2000,Combined system,system,0.9125,0.030618621784789725,0.0,0.0,0.0,1.0,1.4,8.2,5/5

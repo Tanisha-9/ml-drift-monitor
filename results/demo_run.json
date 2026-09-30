@@ -1,0 +1,1140 @@
+{
+ "run": {
+  "seed": 42,
+  "window_size": 1000,
+  "ref_acc": 0.931,
+  "importance": [
+   0.2324647771209757,
+   0.22680643517320373,
+   0.09568711484060759,
+   0.16531912181589636,
+   0.22169371204431665,
+   0.01145792045450332,
+   0.01152655015403998,
+   0.01146793457642182,
+   0.010398123533837232,
+   0.013178310286197613
+  ],
+  "top1": 0,
+  "top3": [
+   0,
+   1,
+   4
+  ],
+  "auc_threshold": 0.5537013135827742,
+  "impact_cols": [
+   0,
+   1
+  ],
+  "records": [
+   {
+    "t": 0,
+    "scenario": "clean",
+    "accuracy": 0.923,
+    "auc": 0.47074548429496194,
+    "pred_ks": 0.030333333333333334,
+    "pred_p": 0.4904526458131801,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 1,
+    "scenario": "clean",
+    "accuracy": 0.924,
+    "auc": 0.49913400840375716,
+    "pred_ks": 0.03666666666666667,
+    "pred_p": 0.26241116003573656,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 2,
+    "scenario": "clean",
+    "accuracy": 0.924,
+    "auc": 0.5034418263185954,
+    "pred_ks": 0.032,
+    "pred_p": 0.421902609706511,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 3,
+    "scenario": "clean",
+    "accuracy": 0.937,
+    "auc": 0.5133023368804059,
+    "pred_ks": 0.029666666666666668,
+    "pred_p": 0.5192847421905021,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 4,
+    "scenario": "clean",
+    "accuracy": 0.931,
+    "auc": 0.5090007559842665,
+    "pred_ks": 0.027,
+    "pred_p": 0.6400264739186019,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 5,
+    "scenario": "clean",
+    "accuracy": 0.931,
+    "auc": 0.49247136042913847,
+    "pred_ks": 0.036333333333333336,
+    "pred_p": 0.2721261761325271,
+    "drifted_features": [],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 6,
+    "scenario": "clean",
+    "accuracy": 0.911,
+    "auc": 0.4931117393489946,
+    "pred_ks": 0.032,
+    "pred_p": 0.421902609706511,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 7,
+    "scenario": "clean",
+    "accuracy": 0.917,
+    "auc": 0.48078387139004647,
+    "pred_ks": 0.015333333333333332,
+    "pred_p": 0.9940369032195624,
+    "drifted_features": [
+     7
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 8,
+    "scenario": "clean",
+    "accuracy": 0.93,
+    "auc": 0.5050070300110759,
+    "pred_ks": 0.023,
+    "pred_p": 0.8181068996183365,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 9,
+    "scenario": "clean",
+    "accuracy": 0.934,
+    "auc": 0.4842830188804906,
+    "pred_ks": 0.03333333333333333,
+    "pred_p": 0.37122718685631695,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 10,
+    "scenario": "harmless",
+    "accuracy": 0.933,
+    "auc": 0.924257869925094,
+    "pred_ks": 0.06,
+    "pred_p": 0.008838588473761778,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 11,
+    "scenario": "harmless",
+    "accuracy": 0.94,
+    "auc": 0.9197058092780163,
+    "pred_ks": 0.061,
+    "pred_p": 0.007367744809454001,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 12,
+    "scenario": "harmless",
+    "accuracy": 0.913,
+    "auc": 0.928157455616052,
+    "pred_ks": 0.08466666666666667,
+    "pred_p": 4.115166974717506e-05,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 13,
+    "scenario": "harmless",
+    "accuracy": 0.922,
+    "auc": 0.921477914590788,
+    "pred_ks": 0.064,
+    "pred_p": 0.004191238517538648,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 14,
+    "scenario": "harmless",
+    "accuracy": 0.941,
+    "auc": 0.9296542141033339,
+    "pred_ks": 0.05466666666666667,
+    "pred_p": 0.022176564321448076,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 15,
+    "scenario": "harmless",
+    "accuracy": 0.92,
+    "auc": 0.9203154441057014,
+    "pred_ks": 0.06,
+    "pred_p": 0.008838588473761778,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 16,
+    "scenario": "harmless",
+    "accuracy": 0.922,
+    "auc": 0.9311338905394039,
+    "pred_ks": 0.035333333333333335,
+    "pred_p": 0.3028220441567962,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 17,
+    "scenario": "harmless",
+    "accuracy": 0.927,
+    "auc": 0.9197673064623849,
+    "pred_ks": 0.07466666666666667,
+    "pred_p": 0.00045275644017922506,
+    "drifted_features": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "info",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 18,
+    "scenario": "clean",
+    "accuracy": 0.932,
+    "auc": 0.46483366357132333,
+    "pred_ks": 0.035666666666666666,
+    "pred_p": 0.2923304710380881,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 19,
+    "scenario": "clean",
+    "accuracy": 0.935,
+    "auc": 0.49480834343541363,
+    "pred_ks": 0.051333333333333335,
+    "pred_p": 0.03773208406348951,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 20,
+    "scenario": "clean",
+    "accuracy": 0.927,
+    "auc": 0.5060600151679255,
+    "pred_ks": 0.019,
+    "pred_p": 0.9471154130612522,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 21,
+    "scenario": "clean",
+    "accuracy": 0.938,
+    "auc": 0.48689632971519653,
+    "pred_ks": 0.03766666666666667,
+    "pred_p": 0.23479348294058824,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 22,
+    "scenario": "clean",
+    "accuracy": 0.927,
+    "auc": 0.5072355446921629,
+    "pred_ks": 0.034,
+    "pred_p": 0.34739162641310617,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 23,
+    "scenario": "clean",
+    "accuracy": 0.94,
+    "auc": 0.4843283250163184,
+    "pred_ks": 0.034333333333333334,
+    "pred_p": 0.3358595342506955,
+    "drifted_features": [],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    },
+    "level": "ok",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 24,
+    "scenario": "impactful",
+    "accuracy": 0.927,
+    "auc": 0.5065461516253625,
+    "pred_ks": 0.026,
+    "pred_p": 0.6861805635265057,
+    "drifted_features": [
+     1
+    ],
+    "flags": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": false,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": false
+    }
+   },
+   {
+    "t": 25,
+    "scenario": "impactful",
+    "accuracy": 0.915,
+    "auc": 0.5442142525543292,
+    "pred_ks": 0.06166666666666667,
+    "pred_p": 0.006514921192436461,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": false,
+     "A_feature_tests": true,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": true
+    }
+   },
+   {
+    "t": 26,
+    "scenario": "impactful",
+    "accuracy": 0.919,
+    "auc": 0.6232054103698202,
+    "pred_ks": 0.07,
+    "pred_p": 0.0012503437006890084,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": false,
+     "D_prediction": false,
+     "system": true
+    }
+   },
+   {
+    "t": 27,
+    "scenario": "impactful",
+    "accuracy": 0.906,
+    "auc": 0.6391004030230083,
+    "pred_ks": 0.08266666666666667,
+    "pred_p": 6.810463927825427e-05,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": true
+    }
+   },
+   {
+    "t": 28,
+    "scenario": "impactful",
+    "accuracy": 0.917,
+    "auc": 0.696736629816416,
+    "pred_ks": 0.119,
+    "pred_p": 1.0913468627689185e-09,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": false,
+     "system": true
+    }
+   },
+   {
+    "t": 29,
+    "scenario": "impactful",
+    "accuracy": 0.895,
+    "auc": 0.695081308853764,
+    "pred_ks": 0.11966666666666667,
+    "pred_p": 8.584397963781262e-10,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 30,
+    "scenario": "impactful",
+    "accuracy": 0.873,
+    "auc": 0.7497346117043658,
+    "pred_ks": 0.16166666666666665,
+    "pred_p": 1.4985157680387114e-17,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 31,
+    "scenario": "impactful",
+    "accuracy": 0.855,
+    "auc": 0.7809640123301089,
+    "pred_ks": 0.16466666666666666,
+    "pred_p": 3.3996174358634756e-18,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 32,
+    "scenario": "impactful",
+    "accuracy": 0.849,
+    "auc": 0.8160786886039083,
+    "pred_ks": 0.191,
+    "pred_p": 2.2735036517092155e-24,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 33,
+    "scenario": "impactful",
+    "accuracy": 0.837,
+    "auc": 0.8257134694889814,
+    "pred_ks": 0.20966666666666667,
+    "pred_p": 2.5744454744739766e-29,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 34,
+    "scenario": "impactful",
+    "accuracy": 0.783,
+    "auc": 0.8589308590747157,
+    "pred_ks": 0.22766666666666666,
+    "pred_p": 1.5489022464725738e-34,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 35,
+    "scenario": "impactful",
+    "accuracy": 0.787,
+    "auc": 0.8735898330223192,
+    "pred_ks": 0.25533333333333336,
+    "pred_p": 1.9604123843572764e-43,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 36,
+    "scenario": "impactful",
+    "accuracy": 0.769,
+    "auc": 0.881873817857706,
+    "pred_ks": 0.26066666666666666,
+    "pred_p": 2.846648092352165e-45,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 37,
+    "scenario": "impactful",
+    "accuracy": 0.767,
+    "auc": 0.9000006102018293,
+    "pred_ks": 0.275,
+    "pred_p": 2.0708263786956426e-50,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 38,
+    "scenario": "impactful",
+    "accuracy": 0.724,
+    "auc": 0.915538643784854,
+    "pred_ks": 0.2853333333333333,
+    "pred_p": 2.699076753627557e-54,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   },
+   {
+    "t": 39,
+    "scenario": "impactful",
+    "accuracy": 0.694,
+    "auc": 0.9190125011994786,
+    "pred_ks": 0.2956666666666667,
+    "pred_p": 2.476050918674466e-58,
+    "drifted_features": [
+     0,
+     1
+    ],
+    "flags": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    },
+    "level": "relevant",
+    "alerts": {
+     "baseline": true,
+     "A_feature_tests": true,
+     "B_classifier": true,
+     "D_prediction": true,
+     "system": true
+    }
+   }
+  ]
+ },
+ "score": {
+  "methods": {
+   "baseline": {
+    "recall_impactful": 0.875,
+    "false_alarm_clean": 0.0,
+    "false_alarm_harmless": 0.0,
+    "precision": 1.0,
+    "delay_from_drift_start": 2,
+    "lead_over_labels": 7
+   },
+   "A_feature_tests": {
+    "recall_impactful": 0.9375,
+    "false_alarm_clean": 0.0,
+    "false_alarm_harmless": 0.875,
+    "precision": 0.6818181818181818,
+    "delay_from_drift_start": 1,
+    "lead_over_labels": 8
+   },
+   "B_classifier": {
+    "recall_impactful": 0.8125,
+    "false_alarm_clean": 0.0,
+    "false_alarm_harmless": 0.875,
+    "precision": 0.65,
+    "delay_from_drift_start": 3,
+    "lead_over_labels": 6
+   },
+   "D_prediction": {
+    "recall_impactful": 0.6875,
+    "false_alarm_clean": 0.0,
+    "false_alarm_harmless": 0.0,
+    "precision": 1.0,
+    "delay_from_drift_start": 5,
+    "lead_over_labels": 4
+   },
+   "system": {
+    "recall_impactful": 0.9375,
+    "false_alarm_clean": 0.0,
+    "false_alarm_harmless": 0.0,
+    "precision": 1.0,
+    "delay_from_drift_start": 1,
+    "lead_over_labels": 8
+   }
+  },
+  "accuracy_by_scenario": {
+   "clean": 0.9288125,
+   "harmless": 0.92725,
+   "impactful": 0.8385625
+  },
+  "labels_confirm_at": 33,
+  "ref_acc": 0.931
+ }
+}
