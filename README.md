@@ -5,7 +5,7 @@ Learn Depth Academy LLP · Track 2 Advanced ML Research Internship · Project 01
 A small, readable monitoring system for a deployed ML model. It watches incoming data window by window and
 answers one question: **did the data change in a way that will hurt the model, or is it a harmless wiggle?**
 
-**Live demo:** https://ml-drift-monitor-web.vercel.app/· **Report:** [REPORT.md](REPORT.md)
+**Live demo:** https://ml-drift-monitor-web.vercel.app  **Report:** [REPORT.md](REPORT.md)
 
 ## What is in this repo
 
@@ -63,22 +63,3 @@ Model accuracy: 91.5% on clean windows, 91.5% on harmless-shift windows, 83.2% o
 The combined system fires about 8 windows before delayed labels confirm a 5-point accuracy drop.
 See [REPORT.md](REPORT.md) for the full experiments and limitations.
 
-## Push to GitHub
-
-```bash
-git init
-git add .
-git commit -m "Drift monitor: ML-T2-060"
-git branch -M main
-git remote add origin https://github.com/<your-username>/drift-monitor.git
-git push -u origin main
-```
-
-## Deploy the dashboard on Vercel
-
-1. Go to vercel.com, click **Add New → Project**, and import the GitHub repo.
-2. Set **Root Directory** to `web`.
-3. Set **Framework Preset** to `Other`. Leave Build Command and Output Directory empty.
-4. Click **Deploy**. Paste the link at the top of this README.
-
-The dashboard is plain HTML, CSS and JavaScript with no build step and no external scripts.
